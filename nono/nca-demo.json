@@ -1,0 +1,20 @@
+{
+  "$schema": "https://nono.sh/schemas/nono-profile.schema.json",
+  "extends": "nolabs-ai/claude",
+  "meta": {
+    "name": "nca-demo",
+    "version": "1.1.0",
+    "description": "Claude Code wie nolabs-ai/claude, plus Netzwerk-Allowlist (claude-code) und gesperrte Docker-Sockets gängiger macOS-Runtimes"
+  },
+  "network": {
+    "network_profile": "claude-code"
+  },
+  "filesystem": {
+    "deny": [
+      { "path": "/var/run/docker.sock", "when": "macos" },
+      { "path": "$HOME/.orbstack", "when": "macos" },
+      { "path": "$HOME/.colima", "when": "macos" },
+      { "path": "$HOME/.rd", "when": "macos" }
+    ]
+  }
+}
